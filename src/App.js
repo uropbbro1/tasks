@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import TreeNode from './components/TreeNode';
+import AddTask from './components/AddTask';
 
 function App() {
+  const [children, setChildren] = useState([]);
+  const [addTaskVisibility, setAddTaskVisibility] = useState(false);
+  const changeAddTaskVisibility = () => {
+    setAddTaskVisibility(!addTaskVisibility);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="Tree">
+      <h1>Список дел</h1>
+      {addTaskVisibility && <AddTask addTaskVisibility={addTaskVisibility} setAddTaskVisibility={setAddTaskVisibility}
+      children={children} setChildren={setChildren}/> }
+      {children.length > 0 ? <TreeNode/>
+      :
+      <div>
+        <p>На данный момент нет задач</p>
+        <button onClick={changeAddTaskVisibility}>Добавить задачу</button>
+      </div>
+      }
     </div>
   );
-}
+};
 
 export default App;
