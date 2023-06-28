@@ -10,7 +10,8 @@ const AddTask = (props) => {
         setTaskName(`${taskName}-${props.children.length + 1}`);
         props.setChildren([...props.children, { name: taskName, description: taskDescription, children: [] }]);
         props.setAddTaskVisibility(!props.addTaskVisibility);
-        console.log(props.children)
+        props.setNodeName(taskName);
+        props.setNodeDescription(taskDescription);
     }
 
     return(
