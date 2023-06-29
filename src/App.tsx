@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import React, {useState} from 'react'
 import './App.css';
-import TreeNode from './components/TreeNode';
 import AddTask from './components/AddTask';
+import TreeNode from './components/TreeNode';
 
 function App() {
-  const [children, setChildren] = useState([]);
+  const [children, setChildren] = useState<object[]>([]);
   const [addTaskVisibility, setAddTaskVisibility] = useState(false);
   const [nodeName, setNodeName] = useState('');
   const [nodeDescription, setNodeDescription] = useState('');
+
   const changeAddTaskVisibility = () => {
     setAddTaskVisibility(!addTaskVisibility);
   }
@@ -27,6 +28,6 @@ function App() {
       }
     </div>
   );
-};
+}
 
 export default App;
