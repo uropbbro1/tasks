@@ -1,21 +1,21 @@
 import '../App.css'
 import { useState } from 'react';
 import TaskInfo from './TaskInfo';
+import { observer } from 'mobx-react-lite'
+import ChangeTheme from '../store/ChangeTheme';
 
 interface TreeNodeProps{
     name: string;
     description: string;
     key?: number;
     index?: number;
-    blackThemeActive: boolean;
 }
 
 const TreeNode:React.FC<TreeNodeProps> = 
-  ({
+  observer(({
     name,
     description,
-    index,
-    blackThemeActive
+    index
   }) => {
   const [child, setChild] = useState<any[]>([]);
   const [input, setInput] = useState('');
@@ -25,7 +25,7 @@ const TreeNode:React.FC<TreeNodeProps> =
 
   const addNode = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setChild((children) => [...children, { taskName: input,  taskDescription: taskDescription, children: [] }]);
+    setChild((children) => [...children, { name: input,  description: taskDescription, children: [] }]);
     setInput('');
     setDescription('');
   }
@@ -33,9 +33,9 @@ const TreeNode:React.FC<TreeNodeProps> =
   const removeNode = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     if(index){
-        setChild(child.splice(index, index));
-        console.log(child);
-        return false;
+      setChild(child.splice(index, index));
+      console.log(child);
+      return false;
     }else{
       setChild(child.splice(0, index));
       console.log(child);
@@ -53,21 +53,21 @@ const TreeNode:React.FC<TreeNodeProps> =
             if(!checkboxesActive){
               checkbox.checked = true;
               setCheckboxesActive(!checkboxesActive);
-              setTaskInfoVisibility(!taskInfoVisibility)
+              setTaskInfoVisibility(!taskInfoVisibility);
             }else{
               checkbox.checked = false;
               setCheckboxesActive(!checkboxesActive);
-              setTaskInfoVisibility(!taskInfoVisibility)
+              setTaskInfoVisibility(!taskInfoVisibility);
             }
           }
     }else{
         throw new Error('there is no checkboxes');
     }    
   }
-  console.log('array')
-  console.log(child)
+  console.log('array');
+  console.log(child);
   return (
-    <div className= {blackThemeActive ? 'TreeNode BlackTheme' : 'TreeNode'}>
+    <div className= {ChangeTheme.blackThemeActive ? 'TreeNode BlackTheme' : 'TreeNode'}>
         <div className='TreeItem' id='TreeItem'>
           <span><button className='btn' id='parent' type='button' onClick={taskNameHandler}>{name}</button></span>
           <input id='check' type="checkbox"/>
@@ -90,16 +90,20 @@ const TreeNode:React.FC<TreeNodeProps> =
           </form>
           <button className='btn btn-danger' type="button" onClick={removeNode}>Удалить подзадачи</button>
         </div>
-      {taskInfoVisibility && <TaskInfo name={name} description={description} blackThemeActive={blackThemeActive}/>}
+        {taskInfoVisibility && <TaskInfo name={name} description={description}/>}
       <div className="children">
         {child &&
           child.map((item, index) => {
-            return <TreeNode index={index} name={item.taskName} description={item.taskDescription} blackThemeActive={blackThemeActive}/>;
+            return(
+              <div>
+                <TreeNode index={index} name={item.name} description={item.description}/>;
+              </div>
+            );
           })
         }
       </div>
     </div>
   );
-}
+});
 
 export default TreeNode;

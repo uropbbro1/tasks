@@ -4,41 +4,33 @@ import AddTask from './components/AddTask';
 import TreeNode from './components/TreeNode';
 import lightTheme from './assets/lightTheme.svg';
 import darkTheme from './assets/darkTheme.svg';
+import ChangeTheme from './store/ChangeTheme';
+import ChangeAddTaskVisibility from './store/ChangeAddTaskVisibility';
+import { observer } from 'mobx-react-lite';
+import ChangeChildren from './store/ChangeChildren';
 
-function App() {
-  const [children, setChildren] = useState<object[]>([]);
-  const [addTaskVisibility, setAddTaskVisibility] = useState(false);
+const App = observer(() => {
   const [nodeName, setNodeName] = useState('');
   const [nodeDescription, setNodeDescription] = useState('');
-  const [blackThemeActive, setBlackThemeActive] = useState(true);
-
-  const changeAddTaskVisibility = () => {
-    setAddTaskVisibility(!addTaskVisibility);
-  }
-
-  const changeBlackThemeActive = () => {
-    setBlackThemeActive(!blackThemeActive);
-  }
 
   return (
-    <div className={blackThemeActive ? "Tree BlackTheme" : "Tree"}>
-      <div className={blackThemeActive ? 'header BlackTheme' : 'header'}>
-        {!addTaskVisibility && <h1 className={blackThemeActive ? 'TaskListText BlackTheme' : 'TaskListText'}>Список дел</h1>}
-        {blackThemeActive ? <button onClick={changeBlackThemeActive}><img src={lightTheme} alt='lightTheme'/></button>
-        : <button onClick={changeBlackThemeActive}><img src={darkTheme} alt='blackTheme'/></button>}
+    <div className={ChangeTheme.blackThemeActive ? "Tree BlackTheme" : "Tree"}>
+      <div className={ChangeTheme.blackThemeActive ? 'header BlackTheme' : 'header'}>
+        {!ChangeAddTaskVisibility.addTaskVisibility && <h1 className={ChangeTheme.blackThemeActive ? 'TaskListText BlackTheme' : 'TaskListText'}>Список дел</h1>}
+        {ChangeTheme.blackThemeActive ? <button onClick={() => ChangeTheme.ChangeTheme()}><img src={lightTheme} alt='lightTheme'/></button>
+        : <button onClick={() => ChangeTheme.ChangeTheme()}><img src={darkTheme} alt='blackTheme'/></button>}
       </div>
-      {addTaskVisibility && <AddTask addTaskVisibility={addTaskVisibility} setAddTaskVisibility={setAddTaskVisibility}
-      children={children} setChildren={setChildren} setNodeName={setNodeName} setNodeDescription={setNodeDescription} blackThemeActive={blackThemeActive}/>}
-      {children.length > 0 ? <TreeNode name={nodeName} description={nodeDescription} blackThemeActive={blackThemeActive}/>
-      : !addTaskVisibility ?
+      {ChangeAddTaskVisibility.addTaskVisibility && <AddTask setNodeName={setNodeName} setNodeDescription={setNodeDescription}/>}
+      {ChangeChildren.children.length > 0 ? <TreeNode name={nodeName} description={nodeDescription}/>
+      : !ChangeAddTaskVisibility.addTaskVisibility ?
       <div className='EmptyTaskList'>
-        <p className={blackThemeActive ? 'EmptyTaskListText BlackTheme' : 'EmptyTaskListText'}>На данный момент список задач пуст.</p>
-        <button className='btn btn-success' onClick={changeAddTaskVisibility}>Добавить задачу</button>
+        <p className={ChangeTheme.blackThemeActive ? 'EmptyTaskListText BlackTheme' : 'EmptyTaskListText'}>На данный момент список задач пуст.</p>
+        <button className='btn btn-success' onClick={() => ChangeAddTaskVisibility.addTaskVisibilityChange()}>Добавить задачу</button>
       </div>
       : null
       }
     </div>
   );
-}
+});
 
 export default App;
