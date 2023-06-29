@@ -1,4 +1,3 @@
-import '../App.css'
 import { useState } from 'react';
 import TaskInfo from './TaskInfo';
 import { observer } from 'mobx-react-lite'

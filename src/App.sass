@@ -1,0 +1,226 @@
+*
+  margin: 0
+  padding: 0
+
+$darkTheme: black
+$darkThemeTextColor: white
+$addFormInputBackground: #c9c8d4
+$inputBorder: #006dc6
+
+.Tree 
+  font-family: sans-serif
+  margin-left: 10px
+  margin: 0
+
+.Tree.BlackTheme
+  font-family: sans-serif
+  margin-left: 10px
+  background-color: $darkTheme
+  width: 100vw
+  height: 100vh
+  margin: 0
+
+.Tree 
+  .TaskListText
+    font-family: sans-serif
+    margin-left: 10px
+
+.Tree
+  .TaskListText.BlackTheme
+    font-family: sans-serif
+    margin-left: 10px
+    color: $darkThemeTextColor
+
+.header
+  display: flex
+  flex-direction: row
+
+.header
+  button
+    background-color: white
+    border: none
+    position: absolute
+    left: 90%
+
+.header.BlackTheme
+  display: flex
+  flex-direction: row
+
+.header.BlackTheme
+  button
+    background-color: $darkTheme
+    border: none
+    position: absolute
+    left: 90%
+
+.Tree
+  .children
+    margin-left: 60px
+
+.EmptyTaskList
+  position: relative
+  width: 40%
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+
+.EmptyTaskList
+  .EmptyTaskListText
+    position: relative
+    margin: 10px
+    font-size: 20px
+
+.EmptyTaskList
+  .EmptyTaskListText.BlackTheme
+    position: relative
+    margin: 10px
+    font-size: 20px
+    color: $darkThemeTextColor
+
+.AddTask
+  position: absolute
+  margin-left: auto
+  margin-right: auto
+  left: 0
+  right: 0
+  top: 10vh
+  text-align: center
+  width: 50%
+  border: 1px solid black
+  height: fit-content
+  border-radius: 20px
+  min-height: 45vh
+  background: linear-gradient(#77C3DF 33%, #6D7CFD 66%, #B3AAFC)
+
+.AddTask
+  h1
+    text-align: center
+    margin: 0
+
+.AddTaskForm
+  position: relative
+  display: flex
+  flex-direction: column
+  margin: -10px 20px 20px 20px
+  top: 4vh
+
+.AddTaskForm
+  .TaskName
+    width: 70%
+    height: fit-content
+    background-color: #c9c8d4
+    margin: 0 auto
+    border-radius: 10px
+    border: 3px solid $inputBorder
+
+.AddTaskForm
+  .TaskName.BlackTheme
+    width: 70%
+    height: fit-content
+    background-color: $addFormInputBackground
+    margin: 0 auto
+    border-radius: 10px
+    border: 3px solid $inputBorder
+
+.AddTaskForm
+  .TaskDescription
+    position: relative
+    width: 80%
+    height: 15vh
+    margin: 3vh auto 0 auto
+    border-radius: 10px
+    background-color: $addFormInputBackground
+    border: 3px solid $inputBorder
+
+.AddTaskForm
+  .TaskDescription.BlackTheme
+    position: relative
+    width: 80%
+    height: 15vh
+    background-color: #c9c8d4
+    margin: 3vh auto 0 auto
+    border-radius: 10px
+    border: 3px solid $inputBorder
+
+.AddTaskForm
+  .taskDescription::placeholder
+    text-align: center
+
+.AddTaskForm
+  .addTaskButton
+    position: relative
+    margin: 3vh auto 0 auto
+    width: fit-content
+    height: fit-content
+
+.TaskInfo
+  position: absolute
+  height: 40vh
+  width: 30vw
+  top: 12vh
+  left: 68vw
+  background: linear-gradient(#e2ea85, #d6535368)
+  border-radius: 10px
+  text-align: center
+  box-shadow: $inputBorder
+
+.TaskInfo.BlackTheme
+  position: absolute
+  height: 40vh
+  width: 30vw
+  top: 12vh
+  left: 68vw
+  background: linear-gradient(#ffffff, #974e4e68)
+  border-radius: 10px
+  text-align: center
+  box-shadow: $inputBorder
+
+.TaskInfo
+  h1
+    font-family: sans-serif
+    font-size: 36px
+
+.TaskInfo
+  h2
+    font-family: sans-serif
+    font-size: 28px
+
+.TaskInfo
+  p
+    font-family: sans-serif
+    font-size: 24px
+
+.TaskActions
+  display: flex
+  flex-direction: row
+
+.TreeNode
+  .TreeItem
+    display: flex
+    flex-direction: row
+
+.TreeNode
+  input
+    position: relative
+    border: 2px solid $inputBorder
+    border-radius: 10px
+    margin: 0 5px 0 5px
+
+.TreeNode.BlackTheme
+  input
+    position: relative
+    border: 3px solid $inputBorder
+    border-radius: 10px
+    margin: 0 5px 0 5px
+
+.TreeNode 
+  button
+    position: relative
+    margin: 0 5px 0 5px
+
+
+.TreeNode.BlackTheme
+  button
+    position: relative
+    margin: 0 5px 0 5px
+    color: white

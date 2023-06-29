@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import './App.css';
+import './App.sass';
 import AddTask from './components/AddTask';
 import TreeNode from './components/TreeNode';
 import lightTheme from './assets/lightTheme.svg';
@@ -10,6 +10,7 @@ import { observer } from 'mobx-react-lite';
 import ChangeChildren from './store/ChangeChildren';
 
 const App = observer(() => {
+  ChangeTheme.GetTheme();
   const [nodeName, setNodeName] = useState('');
   const [nodeDescription, setNodeDescription] = useState('');
 

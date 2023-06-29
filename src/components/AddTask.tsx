@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from 'react';
-import '../App.css';
 import { observer } from 'mobx-react-lite';
 import ChangeAddTaskVisibility from "../store/ChangeAddTaskVisibility";
 import ChangeTheme from "../store/ChangeTheme";
