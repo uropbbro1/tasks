@@ -7,18 +7,19 @@ interface TreeNodeProps{
     description: string;
     key?: number;
     index?: number;
+    blackThemeActive: boolean;
 }
 
 const TreeNode:React.FC<TreeNodeProps> = 
   ({
     name,
     description,
-    key,
     index,
+    blackThemeActive
   }) => {
   const [child, setChild] = useState<any[]>([]);
-  const [input, setInput] = useState(name + "-0");
-  const [taskDescription, setDescription] = useState(name + "-0");
+  const [input, setInput] = useState('');
+  const [taskDescription, setDescription] = useState('');
   const [taskInfoVisibility, setTaskInfoVisibility] = useState(false);
   const [checkboxesActive, setCheckboxesActive] = useState(false);
 
@@ -66,7 +67,7 @@ const TreeNode:React.FC<TreeNodeProps> =
   console.log('array')
   console.log(child)
   return (
-    <div className="TreeNode">
+    <div className= {blackThemeActive ? 'TreeNode BlackTheme' : 'TreeNode'}>
         <div className='TreeItem' id='TreeItem'>
           <span><button className='btn' id='parent' type='button' onClick={taskNameHandler}>{name}</button></span>
           <input id='check' type="checkbox"/>
@@ -85,15 +86,15 @@ const TreeNode:React.FC<TreeNodeProps> =
               onChange={(e) => setDescription(e.target.value)}
               placeholder='Описание задачи'
             />
-            <button type="submit">Добавить подзадачу</button>
+            <button className='btn btn-success' type="submit">Добавить подзадачу</button>
           </form>
-          <button type="button" onClick={removeNode}>Удалить подзадачи</button>
+          <button className='btn btn-danger' type="button" onClick={removeNode}>Удалить подзадачи</button>
         </div>
-      {taskInfoVisibility && <TaskInfo name={name} description={description}/>}
+      {taskInfoVisibility && <TaskInfo name={name} description={description} blackThemeActive={blackThemeActive}/>}
       <div className="children">
         {child &&
           child.map((item, index) => {
-            return <TreeNode index={index} name={item.taskName} description={item.taskDescription}/>;
+            return <TreeNode index={index} name={item.taskName} description={item.taskDescription} blackThemeActive={blackThemeActive}/>;
           })
         }
       </div>

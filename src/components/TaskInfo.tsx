@@ -1,13 +1,15 @@
 interface TaskInfoProps{
     name: string;
     description: string;
+    blackThemeActive: boolean;
 }
 
-const TaskInfo:React.FC<TaskInfoProps> = ({name, description}: TaskInfoProps) => {
+const TaskInfo:React.FC<TaskInfoProps> = ({name, description, blackThemeActive}: TaskInfoProps) => {
     return(
-        <div className="TaskInfo">
-            <h1>{name}</h1>
-            <p>{description}</p>
+        <div className={blackThemeActive ?  'TaskInfo BlackTheme' : 'TaskInfo'}>
+            <h1>Подробности задачи</h1>
+            <h2>Название задачи: {name}</h2>
+            <p>Описание задачи:<br/>{description}</p>
         </div>
     )
 }
